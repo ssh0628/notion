@@ -21,19 +21,28 @@ info = {
     "asd123" : {"password":"asd123"}, 
 }
 
-@app.get("/", response_class=HTMLResponse)
-def home(request : Request, userid : str=Form(...), password : str=Form(...)):
+@app.post("/", response_class=HTMLResponse)
+def login(request : Request):
+    return templates.TemplateResponse("login.html", {"request" : request})
+
+@app.get("/login", response_class=HTMLResponse)
+def home(request : Request, username : str=Form(...), password : str=Form(...)):
+    user_id = info.get(username)
+
+    # login failed
+    if not user_id or user_id.get("password") != password :
+        context = {
+            "resquest" : request, 
+            "discription" : "Wrong ID or Password"
+        }  
+
+        return templates.TemplateResponse(
+            name="login.html", 
+            context=context
+        )
     
-    context = {
-        "resquest" : request, 
-        "name" : "Root Page", 
-        "discription" : "This is Root Page."
-    }
+    # login successed
     return templates.TemplateResponse(
         name = "login.html", 
         context=context
     )
-
-@app.post("/login", response_class=HTMLResponse)
-def login(request : Request):
-    return

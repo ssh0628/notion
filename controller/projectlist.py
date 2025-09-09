@@ -6,7 +6,7 @@ from fastapi.templating import Jinja2Templates
 
 router = APIRouter(
     prefix="/projectlist", 
-    tag=["projectlist"], 
+    tags=["projectlist"], 
     responses={404:{"discription":"Not Found"}}
 )
 templates = Jinja2Templates(directory="templates")
@@ -17,7 +17,7 @@ templates = Jinja2Templates(directory="templates")
     or make project
 """
 
-@router.post("", responses_class=HTMLResponse)
+@router.post("", response_class=HTMLResponse)
 def notionlist(request : Request):
     context = {
 

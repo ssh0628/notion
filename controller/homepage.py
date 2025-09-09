@@ -6,7 +6,7 @@ from fastapi.templating import Jinja2Templates
 
 router = APIRouter(
     prefix="/homepage", 
-    tag=["homepage"], 
+    tags=["homepage"], 
     responses={404:{"discription":"Not Found"}}
 )
 templates = Jinja2Templates(directory="templates")
