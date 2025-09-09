@@ -12,10 +12,6 @@ templates = Jinja2Templates(directory="templates")
 app.include_router(projectpage.router)
 app.include_router(projectlist.router)
 
-"""
-    login function will be build in here
-"""
-
 # Root
 @app.get("/", response_class=HTMLResponse)
 def root(request : Request, message : str | None=None):
