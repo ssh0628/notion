@@ -14,7 +14,4 @@ PROJECT = {
         {"id" : "project2", "name": "second project", "create_date":"2005-10-01"}, 
         {"id" : "project3", "name": "third project", "create_date":"2007-07-30"}
         ], 
-    "qwe123":[
-        {}
-    ]
 }
