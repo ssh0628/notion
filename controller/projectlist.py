@@ -3,12 +3,14 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from config import config
 
 router = APIRouter(
     prefix="/projectlist", 
     tags=["projectlist"], 
     responses={404:{"discription":"Not Found"}}
 )
+
 templates = Jinja2Templates(directory="templates")
 
 """
@@ -17,11 +19,16 @@ templates = Jinja2Templates(directory="templates")
     or make project
 """
 
-@router.post("", response_class=HTMLResponse)
-def notionlist(request : Request):
-    context = {
+@router.get("/{username}", response_class=HTMLResponse)
+async def notionlist(request : Request, username : str):
+    projects = config.PROJECT.get(username, [])
 
+    context = {
+        "request" : request, 
+        "username" : username, 
+        "projects" : projects
     }
+    
     return templates.TemplateResponse(
         name="projectlist.html", 
         context=context
