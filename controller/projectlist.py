@@ -1,6 +1,6 @@
 # /controller/projectlist.py
 
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from config import config
@@ -20,7 +20,7 @@ templates = Jinja2Templates(directory="templates")
 """
 
 @router.get("/{username}", response_class=HTMLResponse)
-async def notionlist(request : Request, username : str):
+async def projectlist(request : Request, username : str):
     projects = config.PROJECT.get(username, [])
 
     context = {
@@ -33,3 +33,15 @@ async def notionlist(request : Request, username : str):
         name="projectlist.html", 
         context=context
     )
+
+@router.post("/{username}")
+async def makeproject(request : Request, username : str, projectname : str = Form(...)):
+    projects = config.PROJECT.get(username, [])
+
+    context = {
+        "request" : request, 
+        "username" : username, 
+        "projects" : projects,
+    }
+    
+    return

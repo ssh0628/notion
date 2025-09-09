@@ -24,6 +24,6 @@ def projectpage():
 
     }
     return templates.TemplateResponse(
-        name="projectlist.html", 
+        name="projectpage.html", 
         context=context
     )
