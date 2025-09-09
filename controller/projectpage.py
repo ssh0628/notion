@@ -1,12 +1,12 @@
-# /controller/homepage.py
+# /controller/projectpage.py
 
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 router = APIRouter(
-    prefix="/homepage", 
-    tags=["homepage"], 
+    prefix="/project", 
+    tags=["project"], 
     responses={404:{"discription":"Not Found"}}
 )
 templates = Jinja2Templates(directory="templates")
@@ -18,8 +18,8 @@ templates = Jinja2Templates(directory="templates")
     3. 
 """
 
-@router.get("")
-def homepage():
+@router.get("/{project_id}", response_class=HTMLResponse)
+def projectpage():
     context = {
 
     }

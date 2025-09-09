@@ -2,14 +2,14 @@
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
-from controller import homepage, projectlist
+from controller import projectlist, projectpage
 from config import config
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 
 # controller
-app.include_router(homepage.router)
+app.include_router(projectpage.router)
 app.include_router(projectlist.router)
 
 """

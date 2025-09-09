@@ -8,7 +8,7 @@ INFO = {
 }
 
 PROJECT = {
-    # username :[{project_num:name, "create_date":"date"}]
+    # username :[{id, name, date}]
     "asd123" : [
         {"id" : "project1", "name": "first project", "create_date":"2002-01-20"},
         {"id" : "project2", "name": "second project", "create_date":"2005-10-01"}, 
