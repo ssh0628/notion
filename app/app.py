@@ -27,7 +27,7 @@ async def login(request : Request, username : str=Form(...), password : str=Form
     # login failed
     if not user_id or user_id.get("password") != password :
         context = {
-            "resquest" : request, 
+            "request" : request, 
             "discription" : "Wrong ID or Password"
         }  
 

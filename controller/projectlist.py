@@ -1,4 +1,4 @@
-# /controller/notionList.py
+# /controller/projectlist.py
 
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse
@@ -28,7 +28,7 @@ async def notionlist(request : Request, username : str):
         "username" : username, 
         "projects" : projects
     }
-    
+
     return templates.TemplateResponse(
         name="projectlist.html", 
         context=context
