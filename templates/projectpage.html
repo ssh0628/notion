@@ -1,12 +1,64 @@
+<!-- /templates/projectpage.html -->
+
 <!DOCTYPE html>
-<html>
+<html lang="ko">
     <head>
-        <title>Home Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- project 변수가 존재하면 그 이름을, 없으면 '프로젝트'를 제목으로 사용 -->
+        <title>{{ project.name if project else "프로젝트" }}</title>
         <style>
-            
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+                margin: 0;
+                background-color: #f7f7f5;
+                color: #37352f;
+            }
+            .container {
+                max-width: 900px;
+                margin: 40px auto;
+                padding: 20px;
+            }
+            .breadcrumb a {
+                color: #9b9a97;
+                text-decoration: none;
+                font-weight: 500;
+            }
+            .breadcrumb a:hover {
+                text-decoration: underline;
+            }
+            .project-header h1 {
+                font-size: 40px;
+                border-bottom: 1px solid #eee;
+                padding-bottom: 10px;
+            }
+            .project-content {
+                padding-top: 20px;
+                font-size: 16px;
+                line-height: 1.6;
+            }
         </style>
     </head>
     <body>
-
+        <div class="container">
+            <!-- '프로젝트 목록으로 돌아가기' 링크 -->
+            <div class="breadcrumb">
+                <a href="/projectlist/{{ username }}">← 프로젝트 목록</a>
+            </div>
+            
+            <!-- 프로젝트가 정상적으로 전달된 경우 -->
+            {% if project %}
+                <div class="project-header">
+                    <h1>📄 {{ project.name }}</h1>
+                </div>
+                <div class="project-content">
+                    <p>여기에 Notion처럼 내용을 편집할 수 있는 에디터가 들어갈 예정입니다.</p>
+                    <p><strong>생성일:</strong> {{ project.create_date }}</p>
+                    <p><strong>고유 ID:</strong> {{ project.id }}</p>
+                </div>
+            {% else %}
+                <h1>프로젝트를 찾을 수 없습니다.</h1>
+            {% endif %}
+        </div>
     </body>
 </html>

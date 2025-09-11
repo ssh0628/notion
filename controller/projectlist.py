@@ -10,19 +10,13 @@ from datetime import datetime
 router = APIRouter(
     prefix="/projectlist", 
     tags=["projectlist"], 
-    responses={404:{"discription":"Not Found"}}
+    responses={404:{"description":"Not Found"}}
 )
 
 class ProjectCreate(BaseModel):
     name: str
 
 templates = Jinja2Templates(directory="templates")
-
-"""
-    after login
-    user can select project
-    or make project
-"""
 
 @router.get("/{username}", response_class=HTMLResponse)
 async def projectlist(request : Request, username : str):

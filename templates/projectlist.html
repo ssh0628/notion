@@ -76,6 +76,11 @@
             .modal-overlay.show {
                 display: flex;
             }
+
+            .project-link {
+                text-decoration: none;
+                color: inherit; /* 부모 요소의 글자색을 그대로 사용 */
+            }
         </style>
     </head>
     <body>
@@ -91,10 +96,12 @@
                 </div>
                 <ul class="project-list" id="projectList">
                     {% for project in projects %}
-                    <li class="project-item">
-                        <span class="project-item-name">📄 {{ project.name }}</span>
-                        <span class="project-item-date">생성일: {{ project.create_date }}</span>
-                    </li>
+                    <a href="/projectpage/{{ username }}/{{ project.id }}" class="project-link">
+                        <li class="project-item">
+                            <span class="project-item-name">📄 {{ project.name }}</span>
+                            <span class="project-item-date">생성일: {{ project.create_date }}</span>
+                        </li>
+                    </a>
                     {% else %}
                     <li class="project-item" id="noProjects">
                         <span class="project-item-name">표시할 프로젝트가 없습니다.</span>
